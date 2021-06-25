@@ -1,12 +1,16 @@
 const axios = require("axios");
 
+/**
+ * Make API request with the given search string
+ * @param {*} searchString 
+ * @returns 
+ */
 const searchWithString = async (searchString) =>
 {
     const queryString = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&page=1&include_adult=false&query=${searchString}`;
 
     try
     {
-        //if (searchString === "err") throw "error";
         const searchResult = await axios.get(queryString);
         return trimMovieDetails(searchResult);
     }
@@ -16,22 +20,31 @@ const searchWithString = async (searchString) =>
     }
 }
 
-const trimMovieDetails = (movieArray) =>
+/**
+ * 
+ * @param {*} apiResult 
+ * @returns New array with just the movie information we're interested in
+ */
+const trimMovieDetails = (apiResult) =>
 {
-    let movieArrayTrimmed = [];
+    let movieArrayTrimmed = [];    
     
-    for (let i = 0; i < movieArray.data.results.length; i++)
-    {       
+    for (let i = 0; i < apiResult.data.results.length; i++)
+    {    
+        if(!apiResult.data.results[i].poster_path) continue;
+        
         const trimmedMovie = {
-            id: movieArray.data.results[i].id,
-            title: movieArray.data.results[i].title,
-            originalTitle: movieArray.data.results[i].original_title,
-            posterPath: movieArray.data.results[i].poster_path,
-            overview: movieArray.data.results[i].overview,
-            releaseDate: movieArray.data.results[i].release_date
+            id: apiResult.data.results[i].id,
+            title: apiResult.data.results[i].title,
+            originalTitle: apiResult.data.results[i].original_title,
+            posterPath: apiResult.data.results[i].poster_path,
+            overview: apiResult.data.results[i].overview,
+            releaseDate: apiResult.data.results[i].release_date
         }
         movieArrayTrimmed.push(trimmedMovie);
     }
+    
+    if(movieArrayTrimmed.length < 1) throw "No movies";
     return movieArrayTrimmed;
 }
 

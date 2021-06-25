@@ -21,9 +21,6 @@ app.get("/", (req, res) =>
     res.send("hey");    
 });
 
-
-
-
 app.listen(port, () => 
 {
     console.log(`Server up and running at port ${port}`);
