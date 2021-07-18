@@ -25,9 +25,7 @@ const options = {
 app.get("/", (req, res) =>
 {
     try
-    {
-        console.log(`Sending file`);
-        
+    {        
         res.sendFile("index.html", options);
     }
     catch (error)

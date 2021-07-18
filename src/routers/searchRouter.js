@@ -11,9 +11,7 @@ searchRouter.get("/movie", async (req, res) =>
 {    
     try
     {
-        const searchResult = await searchWithString(req.query.searchString);
-        console.log(`Returning`, searchResult);
-        
+        const searchResult = await searchWithString(req.query.searchString);        
         res.status(200).send(searchResult);
     }
     catch(error)
