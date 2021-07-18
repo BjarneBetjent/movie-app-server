@@ -8,10 +8,12 @@ const searchRouter = express.Router();
  * in req.query.searchString
  */
 searchRouter.get("/movie", async (req, res) =>
-{
+{    
     try
     {
         const searchResult = await searchWithString(req.query.searchString);
+        console.log(`Returning`, searchResult);
+        
         res.status(200).send(searchResult);
     }
     catch(error)
