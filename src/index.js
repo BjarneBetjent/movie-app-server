@@ -23,7 +23,7 @@ const options = {
  * Cors might be redundant once implemented
  */
 app.get("/", (req, res) =>
-{
+{    
     try
     {        
         res.sendFile("index.html", options);

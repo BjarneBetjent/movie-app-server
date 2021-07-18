@@ -40,7 +40,9 @@ const trimMovieDetails = (apiResult) =>
             posterPath: apiResult.data.results[i].poster_path,
             overview: apiResult.data.results[i].overview,
             releaseDate: apiResult.data.results[i].release_date
-        }
+        }  
+        console.log(trimmedMovie);
+              
         movieArrayTrimmed.push(trimmedMovie);
     }
     

@@ -8,7 +8,7 @@ const searchRouter = express.Router();
  * in req.query.searchString
  */
 searchRouter.get("/movie", async (req, res) =>
-{    
+{        
     try
     {
         const searchResult = await searchWithString(req.query.searchString);        
