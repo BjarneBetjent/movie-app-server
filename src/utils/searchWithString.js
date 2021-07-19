@@ -32,6 +32,7 @@ const trimMovieDetails = (apiResult) =>
     for (let i = 0; i < apiResult.data.results.length; i++)
     {    
         if(!apiResult.data.results[i].poster_path) continue;
+        const releaseDate = apiResult.data.results[i].release_date.split("-")[0];
         
         const trimmedMovie = {
             id: apiResult.data.results[i].id,
@@ -39,7 +40,7 @@ const trimMovieDetails = (apiResult) =>
             originalTitle: apiResult.data.results[i].original_title,
             posterPath: apiResult.data.results[i].poster_path,
             overview: apiResult.data.results[i].overview,
-            releaseDate: apiResult.data.results[i].release_date
+            releaseDate
         }  
         console.log(trimmedMovie);
               
